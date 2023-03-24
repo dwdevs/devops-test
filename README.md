@@ -12,7 +12,7 @@ This Code assessment represents a coding challenge for Engineering roles.
 ## Submission
 
 First steps
-1. Use your own Github account to fork this repository.
+1. Use your own Github account to clone this repository.
  
 Once the activity is completed:
 1. Commit/ push your code into your own Git. 
