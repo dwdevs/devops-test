@@ -82,5 +82,5 @@ The stage is completed when:
 - [ ] Externalise the balance to create a threadsafe wallet
 
 ### Contact
-* For any questions, please contact the person/Team who contact you.
+* For any questions, please contact the hiring person/team who contacted you.
 
