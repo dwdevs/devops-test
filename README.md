@@ -13,6 +13,7 @@ This Code assessment represents a coding challenge for Engineering roles.
 
 First steps
 1. Use your own Github account to clone this repository.
+2. Commit / push code to *your own repo*. Commit often at least after you complete each stage.
  
 Once the activity is completed:
 1. Commit/ push your code into your own Git. 
