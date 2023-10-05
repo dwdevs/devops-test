@@ -13,20 +13,20 @@ rebuild:
 	docker build --no-cache latest/ -t ${DOCKER_REPO}/${IMAGE_NAME}:${IMAGE_VERSION}
 
 up_traefik:
-	docker-compose -f docker-compose.traefik.yml up
+	docker compose -f docker-compose.traefik.yml up
 
 down_traefik:
-	docker-compose -f docker-compose.traefik.yml down
+	docker compose -f docker-compose.traefik.yml down
 
 up: build
 	echo "Building app"
-	docker-compose -f docker-compose.yml \
+	docker compose -f docker-compose.yml \
 				   -f docker-compose.traefik.yml \
 				-p ${STACK_NAME} up -d --remove-orphans --scale api=3
-	docker-compose -f docker-compose.yml -p ${STACK_NAME} logs --follow
+	docker compose -f docker-compose.yml -p ${STACK_NAME} logs --follow
 
 down:
-	docker-compose -f docker-compose.yml \
+	docker compose -f docker-compose.yml \
 				-f docker-compose.traefik.yml \
 				-p ${STACK_NAME} down
 

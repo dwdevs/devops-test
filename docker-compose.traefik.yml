@@ -2,15 +2,15 @@ version: "3.8"
 
 networks:
     frontend:
-        external: true
-        name: ${FRONTEND_NETWORK_NAME:?frontend_network_name}
+        external:
+          name: ${FRONTEND_NETWORK_NAME:?frontend_network_name}
 
     backend:
         name: backend
 
 services:
 
-  #Note, as part of the assessment, all 'labels' and 'command' sections in the traefik service  have been verified to work correctly. 
+  #Note, as part of the assessment, all 'labels' and 'command' sections in the traefik service have been verified to work correctly. 
   #no other sections should be assumed to be correct
   traefik:
     image: "traefik:v2.8"
