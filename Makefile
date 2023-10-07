@@ -16,7 +16,7 @@ up_traefik:
 	docker compose -f docker-compose.traefik.yml up
 
 down_traefik:
-	docker compose -f docker-compose.traefik.yml down
+	docker compose -f docker-compose.traefik.yml down --remove-orphans
 
 up: build
 	echo "Building app"
@@ -31,8 +31,13 @@ down:
 				-p ${STACK_NAME} down
 
 unit_test_python:
-	pytest -p no:cacheprovider src/test
+	python -m pytest -p no:cacheprovider src/test
 
 unit_test_docker: build
 	docker run -it ${DOCKER_REPO}/${IMAGE_NAME}:${IMAGE_VERSION} pytest -p no:cacheprovider ./test
 
+# Only for local testing.
+docker_clean: 
+	echo "Cleaning all local Docker with prune";
+	docker system prune --all -f;
+	docker ps -a

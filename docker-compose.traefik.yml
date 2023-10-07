@@ -2,8 +2,9 @@ version: "3.8"
 
 networks:
     frontend:
-        external:
-          name: ${FRONTEND_NETWORK_NAME:?frontend_network_name}
+        #external: true 
+        #"Need to understand why this supresses the warning when commented out"
+        name: ${FRONTEND_NETWORK_NAME:?frontend_network_name}
 
     backend:
         name: backend
@@ -76,6 +77,7 @@ services:
     volumes:
       - ./prometheus/:/etc/prometheus/
     networks:
+      - frontend
       - backend
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
