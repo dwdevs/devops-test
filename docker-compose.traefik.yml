@@ -2,8 +2,7 @@ version: "3.8"
 
 networks:
     frontend:
-        #external: true 
-        #"Need to understand why this supresses the warning when commented out"
+        external: true 
         name: ${FRONTEND_NETWORK_NAME:?frontend_network_name}
 
     backend:
