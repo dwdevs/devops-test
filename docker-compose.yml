@@ -4,8 +4,12 @@ networks:
     frontend:
         external: true
         name: ${FRONTEND_NETWORK_NAME:?frontend_network_name}
+
+    backend:
+        name: ${BACKEND_NETWORK_NAME}:?backend_network_name}
+
     api:
-      name: api
+        name: ${API_NETWORK_NAME}:?api_network_name}
 
 #Note the labels here are not part of the test. 
 #You should not need to change them
@@ -20,7 +24,6 @@ x-service-traefik-frontend: &service-traefik-frontend
 
         - "traefik.http.routers.rtr_devopstestapi.service=svc_devopstestapi"
         - "traefik.http.services.svc_devopstestapi.loadbalancer.server.port=80"
-
 
 services:
     api:
@@ -79,8 +82,7 @@ services:
                         "--worker-tmp-dir", "/dev/shm", #use shm as the worker lock-file dir or we will have to wait for io
                         "--worker-class", "gevent", 
                         "-b", "0.0.0.0:${INTERNAL_APP_PORT:?internal_app_port}", 
-                        #"--logger-class", "logger.CustomLogger",
+                        "--logger-class", "logger.CustomLogger",
                         "--access-logfile", "-",
                         "--log-file", "-", #all logs to stdout
                         "wsgigunicorn:app" ]
-

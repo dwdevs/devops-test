@@ -6,7 +6,10 @@ networks:
         name: ${FRONTEND_NETWORK_NAME:?frontend_network_name}
 
     backend:
-        name: backend
+        name: ${BACKEND_NETWORK_NAME}:?backend_network_name}
+
+    api:
+        name: ${API_NETWORK_NAME}:?api_network_name}
 
 services:
 
@@ -91,4 +94,3 @@ services:
       - "traefik.http.routers.prometheus.middlewares=auth"
       - "traefik.http.routers.prometheus.entrypoints=websecure"
       - "traefik.http.routers.prometheus.tls=true"
-
