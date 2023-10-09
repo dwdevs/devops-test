@@ -2,7 +2,7 @@ version: "3.8"
 
 networks:
     frontend:
-        external: true 
+        external: true
         name: ${FRONTEND_NETWORK_NAME:?frontend_network_name}
 
     backend:
