@@ -13,3 +13,13 @@ scrape_configs:
 - job_name: 'node'
   static_configs:
     - targets: ['traefik:8080']
+
+- job_name: 'prometheus'
+  static_configs:
+    - targets: ['prometheus:9090']
+
+# TODO - Fix error against endpoint - https://prometheus.localhost/targets
+- job_name: 'api'
+  metrics_path: '/status/'
+  static_configs:
+    - targets: ['localhost:80']

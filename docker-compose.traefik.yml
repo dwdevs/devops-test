@@ -4,12 +4,8 @@ networks:
     frontend:
         external: true
         name: ${FRONTEND_NETWORK_NAME:?frontend_network_name}
-
-    backend:
-        name: ${BACKEND_NETWORK_NAME}:?backend_network_name}
-
     api:
-        name: ${API_NETWORK_NAME}:?api_network_name}
+        name: ${API_NETWORK_NAME:?api_network_name}
 
 services:
 
@@ -61,12 +57,10 @@ services:
       - "traefik.http.routers.dashboard.entrypoints=websecure"
       - "traefik.http.routers.dashboard.middlewares=auth"
 
-
   whoami:
     image: traefik/whoami:v1.7.1
     networks:
       - frontend
-      - backend
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
@@ -80,7 +74,6 @@ services:
       - ./prometheus/:/etc/prometheus/
     networks:
       - frontend
-      - backend
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -94,3 +87,15 @@ services:
       - "traefik.http.routers.prometheus.middlewares=auth"
       - "traefik.http.routers.prometheus.entrypoints=websecure"
       - "traefik.http.routers.prometheus.tls=true"
+
+  api:
+    image: ${DOCKER_REPO:?docker_repo}/${IMAGE_NAME:?image_name}:${IMAGE_VERSION:?image_version}
+    networks:
+      - frontend
+      - api
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.api.rule=Host(`wallet.localhost`)"
+      - "traefik.http.routers.api.middlewares=auth"
+      - "traefik.http.routers.api.entrypoints=websecure"
+      - "traefik.http.routers.api.tls=true"
