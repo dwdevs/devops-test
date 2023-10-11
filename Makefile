@@ -35,9 +35,3 @@ unit_test_python:
 
 unit_test_docker: build
 	docker run -it ${DOCKER_REPO}/${IMAGE_NAME}:${IMAGE_VERSION} pytest -p no:cacheprovider ./test
-
-# Only for local testing. DO NOT MERGE
-docker_clean: 
-	echo "Cleaning all local Docker with prune";
-	docker system prune --all -f;
-	docker ps -a
