@@ -12,6 +12,7 @@ app  = create_app()
 #We want X-Real-IP to come through for logging
 #app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_host=1)
 
+### REMOVED THIS BECAUSE IT CAUSES THE /status/status issue
 # app = DispatcherMiddleware(redirecter,{
 #     app_config.MOUNTPOINT:     app
 #     })
