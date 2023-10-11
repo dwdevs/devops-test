@@ -16,6 +16,8 @@ class Wallet(object):
 
     def add_cash(self, amount):
         self.balance += amount
-
+    
+    def balance(self):
+        return self.balance
 
 wallet = Wallet(random.random()*1000)

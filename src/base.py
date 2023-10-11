@@ -10,4 +10,3 @@ app = Flask( "redirect", static_folder = None)
 @app.route('/<path:path>')
 def index(path):
     return redirect( APPLICATION_ROOT )
-
