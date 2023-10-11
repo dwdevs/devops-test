@@ -5,6 +5,7 @@ networks:
         external: true
         name: ${FRONTEND_NETWORK_NAME:?frontend_network_name}
     api:
+        external: true
         name: ${API_NETWORK_NAME:?api_network_name}
 
 #Note the labels here are not part of the test. 
@@ -67,7 +68,7 @@ services:
 
 
         healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:${INTERNAL_APP_PORT:?internal_app_port}${MOUNTPOINT:?mountpoint}${SUBMOUNT_URL}/status"]
+            test: ["CMD", "curl", "-f", "http://localhost:${INTERNAL_APP_PORT:?internal_app_port}${MOUNTPOINT:?mountpoint}${SUBMOUNT_URL}"]
             interval: 30s
             timeout: 10s
             retries: 3

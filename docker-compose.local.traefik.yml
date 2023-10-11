@@ -4,7 +4,8 @@ networks:
     frontend:
         external: true
         name: ${FRONTEND_NETWORK_NAME:?frontend_network_name}
-     api:
+    api:
+        external: true
         name: ${API_NETWORK_NAME:?api_network_name}
 
 services:
